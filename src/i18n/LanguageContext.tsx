@@ -3,13 +3,14 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 export type Language = 'es' | 'en';
 
 const LANG_STORAGE_KEY = 'mk11_lang_v1';
+const DEFAULT_LANGUAGE: Language = 'en';
 
 function loadInitialLanguage(): Language {
   try {
     const raw = window.localStorage.getItem(LANG_STORAGE_KEY);
-    return raw === 'en' ? 'en' : 'es';
+    return raw === 'es' || raw === 'en' ? raw : DEFAULT_LANGUAGE;
   } catch {
-    return 'es';
+    return DEFAULT_LANGUAGE;
   }
 }
 
@@ -20,7 +21,7 @@ interface LanguageContextValue {
 }
 
 const LanguageContext = createContext<LanguageContextValue>({
-  lang: 'es',
+  lang: DEFAULT_LANGUAGE,
   setLang: () => {},
   toggleLang: () => {},
 });
