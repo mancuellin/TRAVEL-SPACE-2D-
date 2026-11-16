@@ -1,0 +1,493 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --px-outline: #080a0f;
+    --px-surface: #1e222b;
+    --px-surface-alt: #252a35;
+    --px-inset: #12151c;
+    --px-steel-hi: #646c80;
+    --px-steel-mid: #3a404f;
+    --px-steel-lo: #12141a;
+    --px-gold-hi: #f8d274;
+    --px-gold-mid: #d69638;
+    --px-gold-lo: #7a4c15;
+    --theme-highlight: #38bdf8;
+    --theme-accent: #f59e0b;
+  }
+
+  body {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.font-display {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+.font-pixel {
+  font-family: 'Chakra Petch', 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+.font-mono-tech {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle WorldBox-style dithered pixel grid backdrop */
+.pixel-grid-bg {
+  background-color: #0b0e16;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 2px, transparent 2px);
+  background-size: 16px 16px;
+}
+
+/* Main WorldBox-inspired pixel window frame */
+.pixel-panel {
+  background-color: #1c2029;
+  border: 2px solid #3c4252;
+  box-shadow:
+    inset 2px 2px 0 0 #5b6378,
+    inset -2px -2px 0 0 #101218,
+    0 -3px 0 0 #07090d,
+    0 3px 0 0 #07090d,
+    -3px 0 0 0 #07090d,
+    3px 0 0 0 #07090d,
+    0 6px 0 0 rgba(5, 7, 11, 0.9);
+  border-radius: 0;
+}
+
+.pixel-panel-gold {
+  background-color: #1c2029;
+  border: 2px solid #b98032;
+  box-shadow:
+    inset 2px 2px 0 0 #f4ca6c,
+    inset -2px -2px 0 0 #6e4512,
+    0 -3px 0 0 #07090d,
+    0 3px 0 0 #07090d,
+    -3px 0 0 0 #07090d,
+    3px 0 0 0 #07090d,
+    0 6px 0 0 rgba(5, 7, 11, 0.9);
+  border-radius: 0;
+}
+
+/* Sunken dark pixel well for logs, telemetry, readouts */
+.pixel-inset {
+  background-color: #11141b;
+  border: 2px solid #2b303d;
+  box-shadow:
+    inset 2px 2px 0 0 #080a0e,
+    inset -2px -2px 0 0 #262b38;
+  border-radius: 0;
+}
+
+/* Stepped pixel-art interactive card / selectable row */
+.pixel-card {
+  background-color: #232834;
+  border: 2px solid #3f4657;
+  box-shadow:
+    inset 2px 2px 0 0 #586176,
+    inset -2px -2px 0 0 #14171f,
+    0 3px 0 0 #07090d;
+  border-radius: 0;
+  transition: transform 80ms steps(2), background-color 80ms linear, border-color 80ms linear;
+}
+
+.pixel-card:hover {
+  background-color: #2a303f;
+  border-color: #6b748b;
+}
+
+.pixel-card-active {
+  background-color: #2b2a26;
+  border: 2px solid #d5973b;
+  box-shadow:
+    inset 2px 2px 0 0 #f7d070,
+    inset -2px -2px 0 0 #7b4e16,
+    0 3px 0 0 #07090d;
+  border-radius: 0;
+}
+
+/* WorldBox tactile pixel button (charcoal steel slot) */
+.pixel-btn {
+  background-color: #272c38;
+  color: #f3f0e6;
+  border: 2px solid #4d5466;
+  box-shadow:
+    inset 2px 2px 0 0 #737b91,
+    inset -2px -2px 0 0 #151820,
+    0 -2px 0 0 #07090d,
+    0 2px 0 0 #07090d,
+    -2px 0 0 0 #07090d,
+    2px 0 0 0 #07090d,
+    0 4px 0 0 #07090d;
+  border-radius: 0;
+  transition: transform 70ms steps(2), filter 70ms linear;
+}
+
+.pixel-btn:hover:not(:disabled) {
+  background-color: #323847;
+  filter: brightness(1.08);
+}
+
+.pixel-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow:
+    inset 2px 2px 0 0 #151820,
+    inset -2px -2px 0 0 #5b6378,
+    0 -2px 0 0 #07090d,
+    0 2px 0 0 #07090d,
+    -2px 0 0 0 #07090d,
+    2px 0 0 0 #07090d;
+}
+
+/* WorldBox golden-framed primary button */
+.pixel-btn-gold {
+  background-color: #d79634;
+  color: #161006;
+  border: 2px solid #9d6319;
+  box-shadow:
+    inset 2px 2px 0 0 #fbe088,
+    inset -2px -2px 0 0 #8a5111,
+    0 -2px 0 0 #07090d,
+    0 2px 0 0 #07090d,
+    -2px 0 0 0 #07090d,
+    2px 0 0 0 #07090d,
+    0 4px 0 0 #07090d;
+  border-radius: 0;
+  transition: transform 70ms steps(2), filter 70ms linear;
+}
+
+.pixel-btn-gold:hover:not(:disabled) {
+  background-color: #e6a642;
+  filter: brightness(1.06);
+}
+
+.pixel-btn-gold:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow:
+    inset 2px 2px 0 0 #8a5111,
+    inset -2px -2px 0 0 #fbe088,
+    0 -2px 0 0 #07090d,
+    0 2px 0 0 #07090d,
+    -2px 0 0 0 #07090d,
+    2px 0 0 0 #07090d;
+}
+
+/* WorldBox emerald / danger pixel buttons */
+.pixel-btn-emerald {
+  background-color: #2f9e66;
+  color: #061b10;
+  border: 2px solid #1d6b43;
+  box-shadow:
+    inset 2px 2px 0 0 #6ee7a8,
+    inset -2px -2px 0 0 #165132,
+    0 -2px 0 0 #07090d,
+    0 2px 0 0 #07090d,
+    -2px 0 0 0 #07090d,
+    2px 0 0 0 #07090d,
+    0 4px 0 0 #07090d;
+  border-radius: 0;
+  transition: transform 70ms steps(2), filter 70ms linear;
+}
+
+.pixel-btn-emerald:hover:not(:disabled) {
+  background-color: #38b576;
+}
+
+.pixel-btn-emerald:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+.pixel-btn-danger {
+  background-color: #8f2634;
+  color: #ffe4e8;
+  border: 2px solid #591620;
+  box-shadow:
+    inset 2px 2px 0 0 #e05368,
+    inset -2px -2px 0 0 #4a1119,
+    0 -2px 0 0 #07090d,
+    0 2px 0 0 #07090d,
+    -2px 0 0 0 #07090d,
+    2px 0 0 0 #07090d,
+    0 4px 0 0 #07090d;
+  border-radius: 0;
+  transition: transform 70ms steps(2), filter 70ms linear;
+}
+
+.pixel-btn-danger:hover:not(:disabled) {
+  background-color: #a92e3e;
+}
+
+.pixel-btn-danger:active:not(:disabled) {
+  transform: translateY(2px);
+}
+
+/* WorldBox square icon frame (like the bottom-left action tiles in the reference) */
+.pixel-slot {
+  background-color: #232730;
+  border: 2px solid #505666;
+  box-shadow:
+    inset 2px 2px 0 0 #7a8296,
+    inset -2px -2px 0 0 #13161d,
+    0 0 0 2px #07090d;
+  border-radius: 0;
+}
+
+.pixel-slot-gold {
+  background-color: #2b2822;
+  border: 2px solid #d4973b;
+  box-shadow:
+    inset 2px 2px 0 0 #f6cf6e,
+    inset -2px -2px 0 0 #7b4e16,
+    0 0 0 2px #07090d;
+  border-radius: 0;
+}
+
+/* Small square pixel badge */
+.pixel-badge {
+  background-color: #161922;
+  border: 2px solid #3c4252;
+  box-shadow: inset 1px 1px 0 0 #080a0f;
+  border-radius: 0;
+}
+
+/* Segmented pixel progress bar */
+.pixel-bar-track {
+  background-color: #0d1017;
+  border: 2px solid #383e4d;
+  box-shadow: inset 2px 2px 0 0 #06070b;
+  border-radius: 0;
+}
+
+.pixel-bar-fill {
+  box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.35), inset 0 -2px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Crisp pixel scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 14, 24, 0.45);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(248, 210, 116, 0.7);
+}
+
+/* ============================================================================
+   GLASSMORPHISM UI SYSTEM
+   ============================================================================ */
+.glass-panel {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(15, 22, 38, 0.58) 45%,
+    rgba(9, 13, 24, 0.68) 100%
+  );
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 42px rgba(2, 6, 17, 0.55);
+  border-radius: 16px;
+}
+
+.glass-panel-gold {
+  background: linear-gradient(
+    145deg,
+    rgba(248, 210, 116, 0.14) 0%,
+    rgba(20, 24, 38, 0.62) 48%,
+    rgba(10, 13, 22, 0.72) 100%
+  );
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(248, 210, 116, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(254, 240, 199, 0.28),
+    0 18px 44px rgba(2, 6, 17, 0.6);
+  border-radius: 16px;
+}
+
+.glass-well {
+  background: rgba(6, 10, 19, 0.44);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+}
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.075) 0%,
+    rgba(255, 255, 255, 0.025) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 140ms ease,
+    border-color 140ms ease;
+}
+
+.glass-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.glass-card-active {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 210, 116, 0.2) 0%,
+    rgba(214, 150, 56, 0.08) 100%
+  );
+  border: 1px solid rgba(248, 210, 116, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(254, 243, 199, 0.32),
+    0 6px 18px rgba(245, 158, 11, 0.14);
+  border-radius: 12px;
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 140ms ease,
+    border-color 140ms ease;
+}
+
+.glass-btn {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  color: #f3f0e6;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 6px 18px rgba(2, 6, 17, 0.35);
+  border-radius: 10px;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.glass-btn:hover:not(:disabled) {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.glass-btn:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+.glass-btn-gold {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 210, 116, 0.88) 0%,
+    rgba(214, 150, 56, 0.82) 100%
+  );
+  color: #140e04;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(254, 240, 199, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 10px 26px rgba(214, 150, 56, 0.32);
+  border-radius: 10px;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 120ms ease;
+}
+
+.glass-btn-gold:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.glass-btn-gold:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+.glass-btn-emerald {
+  background: linear-gradient(
+    180deg,
+    rgba(52, 211, 153, 0.85) 0%,
+    rgba(16, 148, 98, 0.82) 100%
+  );
+  color: #031b10;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(167, 243, 208, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 10px 24px rgba(16, 185, 129, 0.25);
+  border-radius: 10px;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 120ms ease;
+}
+
+.glass-btn-emerald:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.glass-btn-emerald:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+.glass-btn-danger {
+  background: linear-gradient(
+    180deg,
+    rgba(225, 29, 72, 0.48) 0%,
+    rgba(136, 19, 55, 0.55) 100%
+  );
+  color: #ffe4e8;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(253, 164, 175, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 18px rgba(136, 19, 55, 0.3);
+  border-radius: 10px;
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 120ms ease;
+}
+
+.glass-btn-danger:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.glass-btn-danger:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+.glass-bar-track {
+  background: rgba(6, 10, 19, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.45);
+  border-radius: 9999px;
+}
+
+.glass-bar-fill {
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}
+
