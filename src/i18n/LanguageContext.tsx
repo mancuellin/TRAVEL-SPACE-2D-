@@ -2,17 +2,7 @@ import React, { createContext, useCallback, useContext, useEffect, useState } fr
 
 export type Language = 'es' | 'en';
 
-const LANG_STORAGE_KEY = 'mk11_lang_v1';
 const DEFAULT_LANGUAGE: Language = 'en';
-
-function loadInitialLanguage(): Language {
-  try {
-    const raw = window.localStorage.getItem(LANG_STORAGE_KEY);
-    return raw === 'es' || raw === 'en' ? raw : DEFAULT_LANGUAGE;
-  } catch {
-    return DEFAULT_LANGUAGE;
-  }
-}
 
 interface LanguageContextValue {
   lang: Language;
@@ -29,27 +19,10 @@ const LanguageContext = createContext<LanguageContextValue>({
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [lang, setLangState] = useState<Language>(loadInitialLanguage);
-
-  const setLang = useCallback((next: Language) => {
-    setLangState(next);
-    try {
-      window.localStorage.setItem(LANG_STORAGE_KEY, next);
-    } catch {
-      // Ignore storage errors
-    }
-  }, []);
+  const [lang, setLang] = useState<Language>(DEFAULT_LANGUAGE);
 
   const toggleLang = useCallback(() => {
-    setLangState((prev) => {
-      const next: Language = prev === 'es' ? 'en' : 'es';
-      try {
-        window.localStorage.setItem(LANG_STORAGE_KEY, next);
-      } catch {
-        // Ignore storage errors
-      }
-      return next;
-    });
+    setLang((prev) => (prev === 'es' ? 'en' : 'es'));
   }, []);
 
   useEffect(() => {
